@@ -8,20 +8,30 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.educandoweb.course.entities.Category;
 import com.educandoweb.course.entities.Order;
+import com.educandoweb.course.entities.Product;
 import com.educandoweb.course.entities.User;
 import com.educandoweb.course.entities.enums.OrderStatus;
+import com.educandoweb.course.repositories.CategoryRepository;
 import com.educandoweb.course.repositories.OrderRepository;
+import com.educandoweb.course.repositories.ProductRepository;
 import com.educandoweb.course.repositories.UserRepository;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner{
+public class TestConfig<categoryRepository> implements CommandLineRunner{
 	@Autowired
 	private UserRepository userRepository;
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired 
+	private CategoryRepository categoryRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -33,6 +43,14 @@ public class TestConfig implements CommandLineRunner{
 		Order o1=new Order(null, Instant.parse("2019-06-20T19:53:07Z"),OrderStatus.PAID, u2);
 		Order o2=new Order(null, Instant.parse("2020-06-20T19:53:07Z"),OrderStatus.DELIVERED, u3);
 		orderRepository.saveAll(Arrays.asList(o1,o2));
+		
+		Category c1=new Category(null,"computers");
+		Category c2=new Category(null,"cosmetics");
+		categoryRepository.saveAll(Arrays.asList(c1,c2));
+		
+		Product p1=new Product(null,"iPhone", "apple product", 22.0, "example.com");
+		productRepository.saveAll(Arrays.asList(p1));
+		
 	}
 	
 	
