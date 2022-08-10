@@ -51,6 +51,11 @@ public class TestConfig<categoryRepository> implements CommandLineRunner{
 		Product p1=new Product(null,"iPhone", "apple product", 22.0, "example.com");
 		productRepository.saveAll(Arrays.asList(p1));
 		
+		p1.getCategories().add(c2);
+		p1.getCategories().add(c1);
+		productRepository.saveAll(Arrays.asList(p1));
+		
+		
 	}
 	
 	
