@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.educandoweb.course.entities.pk.OrderItemPK;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -76,6 +75,9 @@ public class OrderItem implements Serializable{
 
 	public void setProduct(Product product) {
 		id.setProduct(product);;
+	}
+	public Double getSubTotal() {
+		return price*quantity;
 	}
 
 	@Override
